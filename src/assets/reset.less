@@ -1,0 +1,37 @@
+body,html{
+    margin: 0;
+    max-width: 768px;
+    margin: 0 auto;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    font-family: "Microsoft YaHei", "微软雅黑", 'Muli', "Helvetica", Arial, sans-serif;
+}
+a,a:hover,a:active,a:visited,a:link,a:focus{
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
+    -webkit-tap-highlight-color: transparent;
+    outline:none;
+    background: none;
+    text-decoration: none;
+}
+.clear:after{
+    content: '';
+    display: block;
+    clear: both;
+}
+ul,li{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+p{
+    margin: 0;
+    padding: 0;
+}
+// 使用CSS transforms 或者 animations时可能会有页面闪烁的bug
+elements {
+    -webkit-backface-visibility: hidden; 
+}
+image[lazy=loading] {
+    width: 100%;
+    margin: auto;
+  }
