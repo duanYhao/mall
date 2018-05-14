@@ -285,17 +285,18 @@
                     pro.select = item.select
                 }
                 this.calculate();
+                this.isALL()
             },
             //选择单个商品
             selectPro(item1,item2){
                 item2.select = !item2.select;
-                let allShop = false;
-                    if(!item1.select){
-                        allShop = false;
-                    }else{
-                        allShop = true;
-                    }
-                allShop && (item1.select = true);
+                let allShop = true;
+                for(let i of item1.list){
+                        allShop &= i.select;
+                }
+                item1.select = allShop;
+                this.calculate()
+                this.isALL()
             },
             min(item){
                 item.num>1 && item.num--
@@ -304,6 +305,14 @@
             add(item){
                 item.num++
                 item.select && this.calculate()
+            },
+            //判断是否全选
+            isALL(){
+                let isALL = true;
+                for(let i of this.cartList){
+                    isALL &= i.select
+                }
+                this.checkAll = isALL;
             },
             //计算总价
             calculate(){
@@ -320,7 +329,7 @@
             }
         },
         mounted(){
-            this.calculate();
+            // this.calculate();
         }
     }
 </script>
