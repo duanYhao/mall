@@ -13,9 +13,9 @@
                         <div class="operate">
                             <span class="price">￥<span>{{item2.price | before}}</span>{{item2.price | after}}</span>
                             <div class="count">
-                                <span class="min" :class="{disable:item2.num==1}" @click="min(item2)">-</span>
+                                <span class="min" :class="{disable:item2.num==1}" @click="min(item2)"></span>
                                 <input type="tel" onkeyup="value=value.replace(/[^\d]/g,'')" @blur="inputNum(item2)" class="num" v-model="item2.num">
-                                <span class="add" @click="add(item2)">+</span>
+                                <span class="add" @click="add(item2)"></span>
                             </div>
                         </div>
                     </div>
@@ -158,13 +158,29 @@
                             }
                         }
                         .count{
+                            display: flex;
+                            align-items: center;
                             span{
                                 display: inline-block;
                                 line-height: 20px;
                                 text-align: center;
                                 font-size: 16px;
                                 &.min,&.add{
+                                    width: 20px;
+                                    height: 20px;
                                     padding: 0 2px;
+                                    background-position: center center;
+                                    background-size: cover;
+                                    background-repeat: no-repeat;
+                                }
+                                &.min{
+                                    background-image: url('../static/images/minus.png');
+                                    &.disable{
+                                        background-image: url('../static/images/minus_disable.png');
+                                    }
+                                }
+                                &.add{
+                                    background-image: url('../static/images/plus.png');
                                 }
                             }
                             .num{
