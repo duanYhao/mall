@@ -186,10 +186,6 @@
         padding: 0 5px 10px;
         box-sizing: border-box;
     }
-    .divider{
-        background: @divider-bg;
-        height: 10px;
-    }
     .operate{
         display: flex;
         flex-direction: row;

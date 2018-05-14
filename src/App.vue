@@ -67,7 +67,10 @@ body,html{
 }
 
 
-
+.divider{
+    background: @divider-bg;
+    height: 10px;
+}
 
 
 // 为你推荐

@@ -111,6 +111,15 @@ export default new Router({
         posi:34
       },
       component:resolve => require(['@/ceshi'],resolve)
+    },
+    {
+      path:'/reckoning',
+      name:'reckoning',
+      meta:{
+        keepAlive:false,
+        posi:35
+      },
+      component:resolve => require(['@/reckoning'],resolve)
     }
   ]
 })

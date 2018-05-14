@@ -25,7 +25,7 @@
         <div class="pay">
             <div class="all" @click="chooseAll"><span class="check" :class="{checked:checkAll}"></span>全选</div>
             <div class="total">合计：<span> ￥{{total}}</span></div>
-            <div class="btn">去结算<span>({{totalNum}})</span></div>
+            <router-link tag="div" class="btn" to="/reckoning">去结算<span>({{totalNum}})</span></router-link>
         </div>
     </div>
      <div v-if="!isLogin" class="unLogin">
