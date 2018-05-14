@@ -13,7 +13,7 @@
                         <div class="operate">
                             <span class="price">￥<span>{{item2.price | before}}</span>{{item2.price | after}}</span>
                             <div class="count">
-                                <span class="min disable" @click="min(item2)">-</span>
+                                <span class="min" :class="{disable:item2.num==1}" @click="min(item2)">-</span>
                                 <input type="tel" onkeyup="value=value.replace(/[^\d]/g,'')" @blur="inputNum(item2)" class="num" v-model="item2.num">
                                 <span class="add" @click="add(item2)">+</span>
                             </div>
@@ -316,7 +316,6 @@
             },
             //输入数量
             inputNum(item){
-                console.log(item.num)
                 if(!item.num){
                     item.num = 1
                 }
