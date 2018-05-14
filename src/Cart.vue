@@ -3,9 +3,9 @@
         <header-bar title="购物车" :showMenu=true></header-bar>
         <div v-if="isLogin">
             <div class="cart_pro_list" v-for="(item,index) in cartList" :key="index">
-            <div class="shop"><span class="check" :class="{checked:item.select}"></span>{{item.shop}}</div>
+            <div class="shop" @click="allPro(item)"><span class="check" :class="{checked:item.select}"></span>{{item.shop}}</div>
             <div class="proItem" v-for="(item2,index2) in item.list" :key="index2">
-                <span class="check" :class="{checked:item2.select}"></span>
+                <span class="check" :class="{checked:item2.select}" @click="selectPro(item,item2)"></span>
                 <div class="pro">
                     <div class="img"><img v-lazy="item2.img" alt=""></div>
                     <div class="info">
@@ -13,9 +13,9 @@
                         <div class="operate">
                             <span class="price">￥<span>{{item2.price | before}}</span>{{item2.price | after}}</span>
                             <div class="count">
-                                <span class="min disable" @click="min(item)">-</span>
+                                <span class="min disable" @click="min(item2)">-</span>
                                 <input type="number" onkeyup="value=value.replace(/[^\d]/g,'')" class="num" v-model="item2.num">
-                                <span class="add" @click="add">+</span>
+                                <span class="add" @click="add(item2)">+</span>
                             </div>
                         </div>
                     </div>
@@ -214,7 +214,7 @@
                 checkAll:false,
                 cartList:[
                     {
-                        select:true,
+                        select:false,
                         shop:'吃吃吃的店',
                         list:[
                             {
@@ -222,7 +222,7 @@
                                 title:'呵呵呵呵呵呵呵呵呵哈哈哈哈哈嘿嘿嘿哈哈嘿哈哈嘿',
                                 price:'23.99',
                                 num:2,
-                                select:true
+                                select:false
                             }
                         ]
                     },
@@ -267,9 +267,8 @@
         },
         methods:{
             // ...mapMutations(['getLogin']),
+            //全部商品选择
             chooseAll(){
-                this.total = 0;
-                this.totalNum = 0;
                 this.checkAll = !this.checkAll;
                 for(let shop of this.cartList){
                     shop.select = this.checkAll;
@@ -279,13 +278,37 @@
                 }
                 this.calculate();
             },
-            min(){
-                
+            // 全选同一家店的商品
+            allPro(item){
+                item.select = !item.select;
+                for(let pro of item.list){
+                    pro.select = item.select
+                }
+                this.calculate();
             },
-            add(){
-
+            //选择单个商品
+            selectPro(item1,item2){
+                item2.select = !item2.select;
+                let allShop = false;
+                    if(!item1.select){
+                        allShop = false;
+                    }else{
+                        allShop = true;
+                    }
+                allShop && (item1.select = true);
             },
+            min(item){
+                item.num>1 && item.num--
+                item.select && this.calculate()
+            },
+            add(item){
+                item.num++
+                item.select && this.calculate()
+            },
+            //计算总价
             calculate(){
+                this.total = 0;
+                this.totalNum = 0;
                 for(let shop of this.cartList){
                     for(let pro of shop.list){
                         if(pro.select){
