@@ -14,7 +14,7 @@
                             <span class="price">￥<span>{{item2.price | before}}</span>{{item2.price | after}}</span>
                             <div class="count">
                                 <span class="min disable" @click="min(item2)">-</span>
-                                <input type="number" onkeyup="value=value.replace(/[^\d]/g,'')" class="num" v-model="item2.num">
+                                <input type="tel" onkeyup="value=value.replace(/[^\d]/g,'')" @blur="inputNum(item2)" class="num" v-model="item2.num">
                                 <span class="add" @click="add(item2)">+</span>
                             </div>
                         </div>
@@ -233,21 +233,21 @@
                             {
                                 img:'http://img3.imgtn.bdimg.com/it/u=1508375298,1704816399&fm=200&gp=0.jpg',
                                 title:'略略略略略略略略',
-                                price:'33.99',
+                                price:'33.54',
                                 num:1,
                                 select:false
                             },
                             {
                                 img:'http://img5.imgtn.bdimg.com/it/u=118515751,3058693864&fm=27&gp=0.jpg',
                                 title:'呵呵了',
-                                price:'199.89',
+                                price:'199.55',
                                 num:4,
                                 select:false
                             },
                             {
                                 img:'http://img5.imgtn.bdimg.com/it/u=118515751,3058693864&fm=27&gp=0.jpg',
                                 title:'呵呵了',
-                                price:'199.89',
+                                price:'199.10',
                                 num:1,
                                 select:false
                             }
@@ -314,6 +314,14 @@
                 }
                 this.checkAll = isALL;
             },
+            //输入数量
+            inputNum(item){
+                console.log(item.num)
+                if(!item.num){
+                    item.num = 1
+                }
+                this.calculate()
+            },
             //计算总价
             calculate(){
                 this.total = 0;
@@ -321,7 +329,7 @@
                 for(let shop of this.cartList){
                     for(let pro of shop.list){
                         if(pro.select){
-                            this.total += parseFloat(pro.price)*parseInt(pro.num)
+                            this.total = Math.ceil((this.total + Math.ceil(parseFloat(pro.price)*parseInt(pro.num)*100)/100)*100)/100 //有错
                             this.totalNum += parseInt(pro.num);
                         }
                     }
