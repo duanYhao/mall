@@ -67,6 +67,11 @@
 <style lang="less" scoped>
     .main-container{
         background-color: #eee;
+        overflow-y: scroll;
+    }
+    .slide{
+        padding-bottom: 56px;
+        box-sizing: border-box;
     }
     .head{
         position: relative;
