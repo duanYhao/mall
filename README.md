@@ -1,4 +1,4 @@
-# mall se mintui
+# mall use mintui
 
 > A Vue.js project
 
