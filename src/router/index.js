@@ -43,7 +43,7 @@ export default new Router({
       path: '/cart',
       name: 'cart',
       meta:{
-        keepAlive:false,
+        keepAlive:true,
         posi:2
       },
       component: resolve => require(['@/Cart'],resolve)

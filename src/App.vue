@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <transition :name="animate">
-        <router-view class="slide"/>
+        <keep-alive>
+            <router-view class="slide"/>
+        </keep-alive>
     </transition>
   </div>
 </template>

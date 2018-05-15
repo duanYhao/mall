@@ -3,37 +3,37 @@
         <header-bar title="购物车" :showMenu=true></header-bar>
         <div v-if="isLogin">
             <div class="cart_pro_list" v-for="(item,index) in cartList" :key="index">
-            <div class="shop" @click="allPro(item)"><span class="check" :class="{checked:item.select}"></span>{{item.shop}}</div>
-            <div class="proItem" v-for="(item2,index2) in item.list" :key="index2">
-                <span class="check" :class="{checked:item2.select}" @click="selectPro(item,item2)"></span>
-                <div class="pro">
-                    <div class="img"><img v-lazy="item2.img" alt=""></div>
-                    <div class="info">
-                        <div class="title">{{item2.title}}</div>
-                        <div class="operate">
-                            <span class="price">￥<span>{{item2.price | before}}</span>{{item2.price | after}}</span>
-                            <div class="count">
-                                <span class="min" :class="{disable:item2.num==1}" @click="min(item2)"></span>
-                                <input type="tel" onkeyup="value=value.replace(/[^\d]/g,'')" @blur="inputNum(item2)" class="num" v-model="item2.num">
-                                <span class="add" @click="add(item2)"></span>
+                <div class="shop" @click="allPro(item)"><span class="check" :class="{checked:item.select}"></span>{{item.shop}}</div>
+                <div class="proItem" v-for="(item2,index2) in item.list" :key="index2">
+                    <span class="check" :class="{checked:item2.select}" @click="selectPro(item,item2)"></span>
+                    <div class="pro">
+                        <div class="img"><img v-lazy="item2.img" alt=""></div>
+                        <div class="info">
+                            <div class="title">{{item2.title}}</div>
+                            <div class="operate">
+                                <span class="price">￥<span>{{item2.price | before}}</span>{{item2.price | after}}</span>
+                                <div class="count">
+                                    <span class="min" :class="{disable:item2.num==1}" @click="min(item2)"></span>
+                                    <input type="tel" onkeyup="value=value.replace(/[^\d]/g,'')" @blur="inputNum(item2)" class="num" v-model="item2.num">
+                                    <span class="add" @click="add(item2)"></span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="pay">
+                    <div class="all" @click="chooseAll"><span class="check" :class="{checked:checkAll}"></span>全选</div>
+                    <div class="total">合计：<span> ￥{{total}}</span></div>
+                    <div class="btn" :class="{disable:totalNum==0}" @click="toPay">去结算<span>({{totalNum}})</span></div>
+                </div>
             </div>
         </div>
-        <div class="pay">
-            <div class="all" @click="chooseAll"><span class="check" :class="{checked:checkAll}"></span>全选</div>
-            <div class="total">合计：<span> ￥{{total}}</span></div>
-            <router-link tag="div" class="btn" to="/reckoning">去结算<span>({{totalNum}})</span></router-link>
+        <div v-if="!isLogin" class="unLogin">
+            <p>当前未登陆,登录以同步购物车数据</p>  
+            <router-link to="/login">
+                <mt-button type="default" size="large">去登陆</mt-button>
+            </router-link>
         </div>
-    </div>
-     <div v-if="!isLogin" class="unLogin">
-         <p>当前未登陆,登录以同步购物车数据</p>  
-         <router-link to="/login">
-             <mt-button type="default" size="large">去登陆</mt-button>
-         </router-link>
-     </div>
   </div>
 </template>
 <style lang="less" scoped>
@@ -88,10 +88,13 @@
         }
         .btn{
             width: 30%;
-            background: #e93b3d;
+            background-color: #e93b3d;
             color: #fff;
             font-size: 14px;
             text-align: center;
+            &.disable{
+                background-color: #999;
+            }
             span{
                 font-size: 12px;
             }
@@ -348,6 +351,12 @@
                             this.totalNum += parseInt(pro.num);
                         }
                     }
+                }
+            },
+            //去结算
+            toPay(){
+                if(this.totalNum!=0){
+                    this.$router.push({name:'reckoning'})
                 }
             }
         },
