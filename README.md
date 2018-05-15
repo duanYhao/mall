@@ -1,11 +1,7 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-# mall
-=======
-# use mintui
-=======
-# mintui
->>>>>>> master
+
+# mall use mintui
+
+
 
 > A Vue.js project
 
@@ -26,7 +22,4 @@ npm run build --report
 ```
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
-<<<<<<< HEAD
->>>>>>> initial commit
-=======
->>>>>>> master
+
