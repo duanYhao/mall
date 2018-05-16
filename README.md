@@ -3,7 +3,7 @@
 
 
 
-> A Vue.js project
+> A Vue.js project add to gitee.com
 
 ## Build Setup
 
