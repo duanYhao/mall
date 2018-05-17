@@ -37,16 +37,19 @@
             }
         },
         created(){
-          this.selected = sessionStorage.getItem('selected') || 'home'
+          this.selected = sessionStorage.getItem('selected') || 'home';
+          console.log('create')
         },
         watch:{
-          $route(e){
-            console.log(e)
-            console.log('改变路由');
-            this.selected = e.name;
+          $route(to,from,next){
+            if(to.name==='cart'){
+              sessionStorage.setItem('selected',from.name)
+            }
+            if(from.name==='cart'){
+              this.selected = sessionStorage.getItem('selected');
+            }
           },
           selected(val,oldVal){
-            console.log(val,oldVal);
             this.selected!='cart' &&  sessionStorage.setItem('selected',val)
             val === 'home' && (val='/')
             this.$router.push({

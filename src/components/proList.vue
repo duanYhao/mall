@@ -3,8 +3,8 @@
         :class="{line:type}"
         v-infinite-scroll="loadMore"
         infinite-scroll-disabled="loading"
-        infinite-scroll-distance="10">
-        <router-link tag="li" v-for="(item,index) in list" :key="index"  :to="{name:'proDetail',query:{id:item.id}}">
+        infinite-scroll-distance="10"> 
+        <li v-for="(item,index) in list" :key="index"  @click="toProdetail(item.id)">
             <div class="img"><img v-lazy="item.pic" alt=""></div>
             <div class="text">
                 <div class="name"> {{item.name}}</div>
@@ -17,7 +17,7 @@
                     </div>
                 </div>
             </div>
-        </router-link>
+        </li>
     </ul>
 </template>
 <style lang="less" scoped>
@@ -128,6 +128,10 @@
         methods:{
             loadMore(){
                 this.$emit('loadData')
+            },
+            toProdetail(id){
+                console.log(id)
+                this.$router.push({name:'proDetail',params:{id:id}})
             }
         },
         watch:{

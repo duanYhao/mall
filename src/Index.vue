@@ -9,7 +9,9 @@
             <router-view v-show="!$route.meta.keepAlive"/>
         </transition> -->
         <transition :name="animate">
-            <router-view class="slide"/>
+            <keep-alive>
+                <router-view class="slide"/>
+            </keep-alive>
         </transition>
         <tabbar></tabbar>
     </div>

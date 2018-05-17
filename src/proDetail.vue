@@ -546,7 +546,7 @@
             }
         },
         mounted(){
-            this.id = this.$route.query.id.toString();
+            this.id = this.$route.params.id.toString();
             this.total = this.banner.length;
         },
         computed:{

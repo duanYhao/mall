@@ -5,6 +5,7 @@ Vue.use(Router)
 
 export default new Router({
   mode:'history',
+  // base:'/mint/',
   routes: [
     {
       path:'/',
@@ -58,7 +59,7 @@ export default new Router({
       component:resolve => require(['@/search'],resolve)
     },
     {
-      path:'/proDetail',
+      path:'/proDetail/:id',
       name:'proDetail',
       meta:{
         keepAlive:true,
@@ -120,6 +121,11 @@ export default new Router({
         posi:35
       },
       component:resolve => require(['@/reckoning'],resolve)
+    },
+    {
+      path:'*',
+      name:'notFound',
+      component:resolve => require(['@/notFound'],resolve)
     }
   ]
 })
