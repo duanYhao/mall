@@ -6,10 +6,13 @@ import router from './router'
 import filter from './api/filters'
 import mintui from './api/mintui'
 import store from './vuex/store'
+import axios from 'axios'
 
 
 
 Vue.config.productionTip = false
+
+Vue.prototype.$ajax = axios;
 
 /* eslint-disable no-new */
 new Vue({
@@ -37,3 +40,9 @@ router.beforeEach((to,from,next)=>{
   }
   next();
 })
+
+if(process.env.NODE_ENV==='production'){
+  console.log('this is productuin')
+}else{
+  console.log('this is development')
+}

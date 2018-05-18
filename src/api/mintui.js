@@ -25,10 +25,13 @@ Vue.component(Spinner.name, Spinner);
 Vue.component(Popup.name, Popup);
 Vue.component(Checklist.name, Checklist);
 Vue.component(Field.name, Field);
+
+let path = process.env.NODE_ENV==='production'?'./':'../'
+
 Vue.use(Lazyload,{
     preLoad:1.3,
-    error:'../static/images/2632e378d9187b4e1cadce68baba22b4.jpg',
-    loading:'../static/images/98afcd69d9e67ae7ff8518e561b7f8c3.gif',
+    error:path+'static/images/2632e378d9187b4e1cadce68baba22b4.jpg',
+    loading:path+'static/images/98afcd69d9e67ae7ff8518e561b7f8c3.gif',
     attempt:1
 })
 Vue.use(InfiniteScroll)

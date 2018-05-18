@@ -139,7 +139,14 @@ export default {
     ProList
   },
   mounted(){
-
+    this.$ajax({
+      url:'api/comments',
+      method:'get'
+    }).then(function(res){
+      console.log(res.data)
+    }).catch(function(err){
+      console.log(err)
+    })
   }
 }
 
