@@ -41,8 +41,8 @@
 </template>
 
 <script>
-import Spinner from './components/loading'
-import ProList from './components/proList'
+// import Spinner from './components/loading'
+// import ProList from './components/proList'
 export default {
   name: 'Home',
   data () {
@@ -135,18 +135,22 @@ export default {
     }
   },
   components:{
-    Spinner,
-    ProList
+    // Spinner:() => import('./components/loading'),
+    // ProList:() => import('./components/proList'),
+    Spinner:(resolve) => require(['./components/loading'],resolve),
+    ProList:(resolve) => require(['./components/proList'],resolve)
+    // Spinner,
+    // ProList
   },
   mounted(){
-    this.$ajax({
-      url:'api/comments',
-      method:'get'
-    }).then(function(res){
-      console.log(res.data)
-    }).catch(function(err){
-      console.log(err)
-    })
+    // this.$ajax({
+    //   url:'api/comments',
+    //   method:'get'
+    // }).then(function(res){
+    //   console.log(res.data)
+    // }).catch(function(err){
+    //   console.log(err)
+    // })
   }
 }
 

@@ -45,8 +45,9 @@
             if(to.name==='cart'){
               sessionStorage.setItem('selected',from.name)
             }
-            if(from.name==='cart'){
-              this.selected = sessionStorage.getItem('selected');
+            if(to.name==='/home' || to.name==='sort' || to.name ==='mine'){
+              this.selected = to.name;
+              sessionStorage.setItem('selected',to.name)
             }
           },
           selected(val,oldVal){

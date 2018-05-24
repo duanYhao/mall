@@ -383,13 +383,13 @@
 </style>
 <script>
     import headerBar from './components/headerBar'
-    import shareBox from './components/share'
-    import Spinner from './components/loading'
-    import ProList from './components/proList'
-    import Service from './components/service'
-    import Format from './components/format'
-    import Arguments from './components/arguments'
-    import store from './vuex/store'
+    // import shareBox from './components/share'
+    // import Spinner from './components/loading'
+    // import ProList from './components/proList'
+    // import Service from './components/service'
+    // import Format from './components/format'
+    // import Arguments from './components/arguments'
+    // import store from './vuex/store'
     export default{
         data(){
             return {
@@ -599,12 +599,19 @@
         },
         components:{
             headerBar,
-            shareBox,
-            Spinner,
-            ProList,
-            Service,
-            Format,
-            Arguments
+            // shareBox,
+            // Spinner,
+            // ProList,
+            // Service,
+            // Format,
+            // Arguments,
+            shareBox:(resolve)=>require(['./components/share'],resolve),
+            Spinner:(resolve)=>require(['./components/loading'],resolve),
+            ProList:(resolve)=>require(['./components/proList'],resolve),
+            Service:(resolve)=>require(['./components/service'],resolve),
+            Format:(resolve)=>require(['./components/format'],resolve),
+            Arguments:(resolve)=>require(['./components/arguments'],resolve)
         }
     }
+    //异步加载组件，跟同步相比，加载的主js大小减小很多，但是会增加多个组件js的请求,组件会缓存
 </script>
